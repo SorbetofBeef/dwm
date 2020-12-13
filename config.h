@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  =  3;        /* border pixel of windows */
+static const unsigned int borderpx  =  2;        /* border pixel of windows */
 static const unsigned int snap      =  2;       /* snap pixel */
 static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
@@ -12,8 +12,8 @@ static const int showbar            =  1;        /* 0 means no bar */
 static const int topbar             =  1;        /* 0 means bottom bar */
 static const int vertpad            =  5;       /* vertical padding of bar */
 static const int sidepad            = 10;       /* horizontal padding of bar */
-static const char *fonts[]          = { "InconsolataGo Nerd Font:size=12" };
-static const char dmenufont[]       =   "InconsolataGo Nerd Font:size=14";
+static const char *fonts[]          = { "InconsolataGo Nerd Font:Bold:size=12:antialias=true:hinting=slight" };
+static const char dmenufont[]       =   "InconsolataGo Nerd Font:Bold:size=15:antialias=true:hinting=slight";
 /* colors */
 static const char col_fg[]	        = "#cbe3e7";
 static const char col_bg[]          = "#1e1c31";
@@ -45,33 +45,33 @@ static const char col_white15[]     = "#a6b3cc";
 static const char *colors[][3]      = {
 	/*               fg           bg               border   */
 	[SchemeNorm] = { col_cyan14,  col_black8,     col_black0 },
-	[SchemeSel]  = { col_black8,  col_magenta5,  col_blue12  },
+	[SchemeSel]  = { col_black8,  col_magenta5,   col_blue12  },
 };
 
 /* tagging */
-static const char *tags[] = { " 1   ", " 2   ", " 3   ", " 4   ", " 5   ", " 6   ", " 7   ", " 8   "};
+static const char *tags[] = { " 1   ", " 2   ", " 3   ", " 4   ", " 5   ", " 7   "};
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor  float x,y,w,h         floatborderpx*/
-  { "kitty",    NULL,       "project",    1 << 1,       0,           -1,    50,50,500,500,        5 },
-  { "kitty",    NULL,       "gh-cli",     1 << 2,       1,           -1,    50,50,500,500,        5 },
-	{ "Slack",    NULL,       NULL,         1 << 4,       1,           -1,    50,50,500,500,        5 },
-	{ "zoom",     NULL,       NULL,         1 << 5,       1,           -1,    50,50,500,500,        5 },
-	{ "kitty",    NULL,       "calcurse",   ~0,           1,           -1,    1250,500,500,500,     5 },
-	{ "kitty",    NULL,       "neomutt",    1 << 6,       0,           -1,    50,50,500,500,        5 },
-	{ "kitty",    NULL,       "newsboat",   1 << 6,       0,           -1,    50,50,500,500,        5 },
-	{ "kitty",    NULL,       "gotop",      1 << 7,       1,           -1,    50,50,500,500,        5 },
+	/* class      instance  title       tags mask     isfloating   monitor  float x,y,w,h         floatborderpx*/
+  { "kitty",    NULL,     "project",  1 << 1,       0,           -1,    50,50,500,500,        2 },
+  { "kitty",    NULL,     "gh-cli",   1 << 2,       1,           -1,    50,50,500,500,        2 },
+	{ "Slack",    NULL,     NULL,       1 << 4,       1,           -1,    50,50,1000,800,       3 },
+	{ "zoom",     NULL,     NULL,       1 << 5,       1,           -1,    1220,30,850,1250,     3 },
+	{ "kitty",    NULL,     "neomutt",  1 << 6,       0,           -1,    50,50,500,500,        2 },
+	{ "kitty",    NULL,     "newsboat", 1 << 6,       0,           -1,    0,0,0,0,              2 },
+  { "kitty",    NULL,     "gotop",    1 << 7,       1,           -1,    50,3,0,0,              2 },
+	{ "kitty",    NULL,     "calcurse", ~0,           1,           -1,    1300,550,600,500,     2 },
 };
 
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
-static const int attachdirection = 3;    /* 0 default, 1 above, 2 aside, 3 below, 4 bottom, 5 top */
+static const int attachdirection = 2;    /* 0 default, 1 above, 2 aside, 3 below, 4 bottom, 5 top */
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 #include "vanitygaps.c"
@@ -128,7 +128,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = rangercmd } },
-	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = chromiumcmd } },
+	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = chromiumcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = slackcmd } },
 	{ MODKEY|ShiftMask,             XK_z,      spawn,          {.v = zoomcmd } },
 	{ MODKEY|ShiftMask,             XK_g,      spawn,          {.v = gotopcmd } },
