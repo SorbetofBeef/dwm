@@ -59,9 +59,9 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor  float x,y,w,h         floatborderpx*/
   { "kitty",    NULL,       "project",    1 << 1,       0,           -1,    50,50,500,500,        5 },
   { "kitty",    NULL,       "gh-cli",     1 << 2,       1,           -1,    50,50,500,500,        5 },
-	{ "Slack",    NULL,       NULL,         1 << 4,       0,           -1,    50,50,500,500,        5 },
+	{ "Slack",    NULL,       NULL,         1 << 4,       1,           -1,    50,50,500,500,        5 },
 	{ "zoom",     NULL,       NULL,         1 << 5,       1,           -1,    50,50,500,500,        5 },
-	{ "kitty",    NULL,       "calcurse",   1 << 6,       0,           -1,    50,50,500,500,        5 },
+	{ "kitty",    NULL,       "calcurse",   ~0,           1,           -1,    1250,500,500,500,     5 },
 	{ "kitty",    NULL,       "neomutt",    1 << 6,       0,           -1,    50,50,500,500,        5 },
 	{ "kitty",    NULL,       "newsboat",   1 << 6,       0,           -1,    50,50,500,500,        5 },
 	{ "kitty",    NULL,       "gotop",      1 << 7,       1,           -1,    50,50,500,500,        5 },
@@ -128,6 +128,12 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = rangercmd } },
+	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = chromiumcmd } },
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = slackcmd } },
+	{ MODKEY|ShiftMask,             XK_z,      spawn,          {.v = zoomcmd } },
+	{ MODKEY|ShiftMask,             XK_g,      spawn,          {.v = gotopcmd } },
+	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = nvimcmd } },
+	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = calcursecmd } },
 
 /* Client Manipulation Within Current Stack */
   /* Toggle Panel */
