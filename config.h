@@ -43,13 +43,18 @@ static const char col_cyan14[]      = "#63f2f1";
 static const char col_white7[]      = "#cbe3e7";
 static const char col_white15[]     = "#a6b3cc";
 static const char *colors[][3]      = {
-	/*               fg           bg               border   */
-	[SchemeNorm] = { col_cyan14,  col_black8,     col_black0 },
-	[SchemeSel]  = { col_black8,  col_magenta5,   col_blue12  },
+	/*                   fg           bg            border   */
+	[SchemeNorm]     = { col_cyan14,  col_black8,   col_black0 },
+	[SchemeSel]      = { col_black8,  col_yellow11, col_blue12  },
+	[SchemeStatus]   = { col_black8,  col_cyan14,   "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+	[SchemeTagsSel]  = { col_black8,  col_yellow11, "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+  [SchemeTagsNorm] = { col_cyan14,  col_black8,   "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+  [SchemeInfoSel]  = { col_black8,  col_black8,   "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+  [SchemeInfoNorm] = { col_black8,  col_black8,   "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 /* tagging */
-static const char *tags[] = { " 1   ", " 2   ", " 3   ", " 4   ", " 5   ", " 7   "};
+static const char *tags[] = { "  1   ", "  2   ", "  3   ", "  4   ", "  5   ", "  6   "};
 
 static const Rule rules[] = {
 	/* xprop(1):
