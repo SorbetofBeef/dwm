@@ -12,8 +12,12 @@ static const int showbar            =  1;        /* 0 means no bar */
 static const int topbar             =  1;        /* 0 means bottom bar */
 static const int vertpad            =  5;       /* vertical padding of bar */
 static const int sidepad            = 10;       /* horizontal padding of bar */
-static const char *fonts[]          = { "InconsolataGo Nerd Font:Bold:size=12:antialias=true:hinting=slight" };
-static const char dmenufont[]       =   "InconsolataGo Nerd Font:Bold:size=15:antialias=true:hinting=slight";
+static const char *fonts[]          = { "VictorMono Nerd Font:SemiBold Oblique:size=12:antialias=true:hinting=slight" };
+static const char dmenufont[]       =   "VictorMono Nerd Font:SemiBold Oblique:size=15:antialias=true:hinting=slight";
+/*
+ *static const char *fonts[]          = { "InconsolataGo Nerd Font:Bold:size=12:antialias=true:hinting=slight" };
+ *static const char dmenufont[]       =   "InconsolataGo Nerd Font:Bold:size=15:antialias=true:hinting=slight";
+ */
 /* colors */
 static const char col_fg[]	        = "#cbe3e7";
 static const char col_bg[]          = "#1e1c31";
@@ -64,19 +68,21 @@ static const Rule rules[] = {
 	/* class      instance  title       tags mask     isfloating   monitor  float x,y,w,h         floatborderpx*/
   { "kitty",    NULL,     "project",  1 << 1,       0,           -1,    50,50,500,500,        2 },
   { "kitty",    NULL,     "gh-cli",   1 << 2,       1,           -1,    50,50,500,500,        2 },
-	{ "Slack",    NULL,     NULL,       1 << 4,       1,           -1,    50,50,1000,800,       3 },
-	{ "zoom",     NULL,     NULL,       1 << 5,       1,           -1,    1220,30,850,1250,     3 },
-	{ "kitty",    NULL,     "neomutt",  1 << 6,       0,           -1,    50,50,500,500,        2 },
-	{ "kitty",    NULL,     "newsboat", 1 << 6,       0,           -1,    0,0,0,0,              2 },
-  { "kitty",    NULL,     "gotop",    1 << 7,       1,           -1,    50,3,0,0,              2 },
-	{ "kitty",    NULL,     "calcurse", ~0,           1,           -1,    1300,550,600,500,     2 },
+	{ "Slack",    NULL,     NULL,       1 << 3,       1,           -1,    50,50,1000,800,       3 },
+	{ "zoom",     NULL,     NULL,       1 << 4,       1,           -1,    1220,30,850,1250,     3 },
+  { "kitty",    NULL,     "gotop",    1 << 5,       1,           -1,    50,30,700,900,             2 },
+	{ "kitty",    NULL,     "calcurse", ~0,           1,           -1,    1200,460,700,600,     2 },
+  /*
+	 *{ "kitty",    NULL,     "neomutt",  1 << 6,       0,           -1,    50,50,500,500,        2 },
+	 *{ "kitty",    NULL,     "newsboat", 1 << 6,       0,           -1,    0,0,0,0,              2 },
+   */
 };
 
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
-static const int attachdirection = 2;    /* 0 default, 1 above, 2 aside, 3 below, 4 bottom, 5 top */
+static const int attachdirection = 3;    /* 0 default, 1 above, 2 aside, 3 below, 4 bottom, 5 top */
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 #include "vanitygaps.c"
@@ -125,6 +131,7 @@ static const char *gotopcmd[]     = { "kitty", "--title", "gotop", "gotop", NULL
 static const char *nvimcmd[]      = { "kitty", "--title", "nvim", "nvim", NULL };
 static const char *calcursecmd[]  = { "kitty", "--title", "calcurse", "calcurse", NULL };
 static const char *rangercmd[]    = { "kitty", "--title", "ranger", "ranger", NULL };
+static const char *scratchcmd[]   = { "kitty", "--title", "scratch-pad", "nvim", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -139,6 +146,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_g,      spawn,          {.v = gotopcmd } },
 	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = nvimcmd } },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = calcursecmd } },
+	{ MODKEY|ShiftMask,             XK_n,      spawn,          {.v = scratchcmd } },
 
 /* Client Manipulation Within Current Stack */
   /* Toggle Panel */
