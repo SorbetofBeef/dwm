@@ -54,7 +54,8 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "  1   ", " 2  ﲾ  ", " 3  歷  ", " 4  參 "," 5  聆  ", " 6    ", " 7  ﱩ  " };
+static const char *tags[]    = { "  1  ﯥ  ", " 2  ﱮ  ", " 3  轢 ", " 4  ﱮ  ", " 5  ﱮ  ", " 6  ﱮ  ", " 7  ﱮ  " };
+static const char *alttags[] = { "  1    ", " 2  פּ  ", " 3  歷 ", " 4  參 ", " 5  聆 ", " 6    ", " 7  ﱩ  " };
 
 static const Rule rules[] = {
 	/* xprop(1):
