@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  =  2;        /* border pixel of windows */
+static const unsigned int borderpx  =  4;        /* border pixel of windows */
 static const unsigned int snap      =  2;       /* snap pixel */
 static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
@@ -12,54 +12,54 @@ static const int showbar            =  1;        /* 0 means no bar */
 static const int topbar             =  1;        /* 0 means bottom bar */
 static const int vertpad            =  5;       /* vertical padding of bar */
 static const int sidepad            = 10;       /* horizontal padding of bar */
-static const char *fonts[]          = { "Monoid Nerd Font:size=10:antialias=true:hinting=slight" };
-static const char dmenufont[]       =   "Recursive Sans Casual Static:size=13:antialias=true:hinting=slight";
 /*
- *static const char *fonts[]          = { "InconsolataGo Nerd Font:Bold:size=12:antialias=true:hinting=slight" };
- *static const char dmenufont[]       =   "InconsolataGo Nerd Font:Bold:size=15:antialias=true:hinting=slight";
+ *static const char *fonts[]          = { "ProFontX11 Nerd Font:size=10:antialias=true:hinting=slight" };
+ *static const char dmenufont[]       =   "SpaceMono Nerd Font:size=13:antialias=true:hinting=slight";
  */
+static const char *fonts[]          = { "InconsolataGo Nerd Font:Bold:size=14:antialias=true:hinting=slight" };
+static const char dmenufont[]       =   "InconsolataGo Nerd Font:Bold:size=15:antialias=true:hinting=slight";
 /* colors */
 static const char col_fg[]	        = "#4e4e4e";
-static const char col_bg[]          = "#dadada";
+static const char col_bg[]          = "#e4e4e4";
 /* Row for kitty copypasta */                 
 /* black */                                   
-static const char col_black0[]      = "#4e4e4e";
-static const char col_black8[]      = "#3a3a3a";
+static const char col_black0[]      = "#e4e4e4";
+static const char col_black8[]      = "#4e4e4e";
 /* red */                                     
 static const char col_red1[]        = "#af5f5f";
 static const char col_red9[]        = "#870100";
 /* green */                                   
-static const char col_green2[]      = "#5f885f";
-static const char col_green10[]     = "#005f00";
+static const char col_green2[]      = "#111111";
+static const char col_green10[]     = "#222222";
 /* yellow */                                  
-static const char col_yellow3[]     = "#af8760";
-static const char col_yellow11[]    = "#d8865f";
+static const char col_yellow3[]     = "#222222";
+static const char col_yellow11[]    = "#333333";
 /* blue */                                    
-static const char col_blue4[]       = "#5f87ae";
-static const char col_blue12[]      = "#0087af";
+static const char col_blue4[]       = "#333333";
+static const char col_blue12[]      = "#353535";
 /* magenta */                                 
-static const char col_magenta5[]    = "#875f87";
-static const char col_magenta13[]   = "#87025f";
+static const char col_magenta5[]    = "#353535";
+static const char col_magenta13[]   = "#444444";
 /* cyan */                                    
-static const char col_cyan6[]       = "#5f8787";
-static const char col_cyan14[]      = "#008787";
+static const char col_cyan6[]       = "#444444";
+static const char col_cyan14[]      = "#555555";
 /* white */                                   
-static const char col_white7[]      = "#e4e4e4";
-static const char col_white15[]     = "#eeeeee";
+static const char col_white7[]      = "#555555";
+static const char col_white15[]     = "#666666";
 
 static const char *colors[][3]      = {
-/*                     fg           bg           border   */
-	[SchemeNorm]     = { col_white15, col_yellow3, col_white7 },
-	[SchemeSel]      = {  col_black8,  col_green2, col_black8 },
-	[SchemeStatus]   = { col_white15, col_yellow3,  "#000000" }, // Statusbar right {text,background,not used but cannot be empty}
-	[SchemeTagsSel]  = {  col_black8,  col_green2,  "#000000" }, // Tagbar left selected {text,background,not used but cannot be empty}
-  [SchemeTagsNorm] = { col_white15, col_yellow3,  "#000000" }, // Tagbar left unselected {text,background,not used but cannot be empty}
-  [SchemeInfoSel]  = {      col_bg,      col_bg,  "#000000" }, // infobar middle  selected {text,background,not used but cannot be empty}
-  [SchemeInfoNorm] = {      col_bg,      col_bg,  "#000000" }, // infobar middle  unselected {text,background,not used but cannot be empty}
+/*                     fg      bg        border   */
+	[SchemeNorm]     = { col_fg,   col_bg,  col_red1 },
+	[SchemeSel]      = { col_bg, col_red9,  col_red9 },
+	[SchemeStatus]   = { col_fg,   col_bg, "#000000" }, // Statusbar right {text,background,not used but cannot be empty}
+	[SchemeTagsSel]  = { col_bg, col_red9, "#000000" }, // Tagbar left selected {text,background,not used but cannot be empty}
+  [SchemeTagsNorm] = { col_fg,   col_bg, "#000000" }, // Tagbar left unselected {text,background,not used but cannot be empty}
+  [SchemeInfoSel]  = { col_bg,   col_bg, "#000000" }, // infobar middle  selected {text,background,not used but cannot be empty}
+  [SchemeInfoNorm] = { col_bg,   col_bg, "#000000" }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 /* tagging */
-static const char *tags[] = { " 1    ", " 2    ", " 3    ", " 4    "," 5    ", " 6    ", " 7    " };
+static const char *tags[] = { "  1   ", " 2  ﲾ  ", " 3  歷  ", " 4  參 "," 5  聆  ", " 6    ", " 7  ﱩ  " };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -67,17 +67,18 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 /*    class    inst     title     tags  flt mn    fl x,y,w,h    fltb*/
- {    "kitty", NULL,   "ranger",     -4, 0, -1, 1250,855,700,730, 1 },
- { "chromium", NULL, "chromium",     -4, 0, -1, 0050,050,500,500, 2 },
- {    "xterm", NULL,   "server", 1 << 2, 0, -1, 0050,050,500,500, 2 },
- {    "Slack", NULL,       NULL, 1 << 3, 1, -1, 0025,050,950,850, 2 },
- {     "zoom", NULL,       NULL, 1 << 4, 1, -1, 1250,025,150,850, 2 },
- {    "kitty", NULL,    "gotop", 1 << 5, 1, -1, 1250,025,700,900, 2 },
- {    "kitty", NULL, "calcurse",     ~0, 1, -1, 1250,025,460,300, 1 },
- {    "kitty", NULL,  "sm-term",     ~0, 1, -1, 1250,855,700,730, 1 },
- {    "kitty", NULL, "note-pad",     ~0, 1, -1, 1250,855,700,730, 1 },
- {    "kitty", NULL,  "neomutt", 1 << 6, 0,  1, 0050,050,500,500, 2 },
- {    "kitty", NULL, "newsboat", 1 << 6, 0, -1, 0050,050,500,500, 2 },
+ {      "filing", NULL,   "ranger",       0, 0, -1, 1250,855,700,730, 2 },
+ {      "filing", NULL,  "sm-term",       0, 1, -1, 1250,855,700,730, 2 },
+ { "qutebrowser", NULL,       NULL,       0, 0, -1, 0050,050,500,500, 2 },
+ {       "XTerm", NULL,   "server",  1 << 2, 0, -1, 0050,050,500,500, 2 },
+ {        "feed", NULL,  "neomutt",       0, 0,  1, 0050,050,500,500, 2 },
+ {        "feed", NULL, "newsboat",       0, 0, -1, 0050,050,500,500, 2 },
+ {        "feed", NULL, "calcurse",       0, 1, -1, 1250,025,460,300, 2 },
+
+ {       "Slack", NULL,       NULL,  1 << 4, 1, -1, 0025,050,950,850, 2 },
+ {        "zoom", NULL,       NULL,  1 << 5, 1, -1, 1250,025,150,850, 2 },
+ {      "system", NULL,    "gotop",  1 << 6, 1, -1, 1250,025,700,900, 2 },
+ {     "editing", NULL, "note-pad",       0, 1, -1, 1250,855,700,730, 2 },
 };
 
 /* layout(s) */
@@ -94,23 +95,10 @@ static const int scrollsensetivity = 30; /* 1 means resize window by 1 pixel for
 
 static const Layout layouts[] = {
 /* symbol  arrange function */
- {  "[]=  ",        tile },    /* first entry is default */
- {  ":::  ", gaplessgrid },
- {  "[M]  ",     monocle },
- {  "[@]  ",      spiral },
- { "[\\]  ",     dwindle },
- {  "><>  ",        NULL },    /* no layout function means floating behavior */
- {   NULL,           NULL },
- /*
-  *{  "H[]", deck },
-  *{  "TTT", bstack },
-  *{  "===", bstackhoriz },
-  *{  "HHH", grid },
-  *{  "###", nrowgrid },
-  *{  "---", horizgrid },
-  *{  "|M|", centeredmaster },
-  *{  ">M>", centeredfloatingmaster },
-  */
+ {  "   ",    tile },    /* first entry is default */
+ {  " ﱡ  ", monocle },
+ {  "   ",    NULL },    /* no layout function means floating behavior */
+ {    NULL,    NULL },
 };
 
 /* key definitions */
@@ -126,18 +114,20 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]    = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_yellow3, "-nf", col_white15, "-sb", col_green2, "-sf", col_black8, NULL };
+static const char *dmenucmd[]    = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_yellow3, "-nf", col_white15, "-sb", col_red9, "-sf", col_black8, NULL };
 static const char *termcmd[]     = { "kitty", NULL };
-static const char *chromiumcmd[] = { "chromium", NULL };
+static const char *webcmd[]      = { "qutebrowser", "reddit.com", NULL };
 static const char *slackcmd[]    = { "slack", NULL };
 static const char *zoomcmd[]     = { "zoom", NULL };
 static const char *servercmd[]   = { "xterm", "-T", "server", "-e", "remote-server", NULL };
-static const char *gotopcmd[]    = { "kitty", "--title", "gotop", "gotop", NULL };
-static const char *nvimcmd[]     = { "kitty", "--title", "nvim", "nvim", NULL };
-static const char *calcursecmd[] = { "kitty", "--title", "calcurse", "calcurse", NULL };
-static const char *rangercmd[]   = { "kitty", "--title", "ranger", "ranger", NULL };
-static const char *smtermcmd[]   = { "kitty", "--title", "sm-term", NULL };
-static const char *scratchcmd[]  = { "kitty", "--title", "pad", "nvim", "/home/christian/dox/notes", NULL };
+static const char *gotopcmd[]    = { "kitty", "--title",    "gotop", "--class", "system", "gotop", NULL };
+static const char *nvimcmd[]     = { "kitty", "--title",     "nvim", "--class", "editing","nvim", NULL };
+static const char *rangercmd[]   = { "kitty", "--title",   "ranger", "--class", "filing", "ranger", NULL };
+static const char *calcursecmd[] = { "kitty", "--title", "calcurse", "--class", "feed", "calcurse", NULL };
+static const char *neomuttcmd[]  = { "kitty", "--title",  "neomutt", "--class", "feed", "neomutt", NULL };
+static const char *newsboatcmd[] = { "kitty", "--title", "newsboat", "--class", "feed", "newsboat", NULL };
+static const char *smtermcmd[]   = { "kitty", "--title",  "sm-term", "--class", "filing", NULL };
+static const char *scratchcmd[]  = { "kitty", "--title", "note-pad", "--class", "editing", "nvim", "/home/christian/dox/notes/new-note", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -147,12 +137,14 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = smtermcmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = rangercmd } },
-	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = chromiumcmd } },
+	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = webcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = slackcmd } },
 	{ MODKEY|ShiftMask,             XK_z,      spawn,          {.v = zoomcmd } },
 	{ MODKEY|ShiftMask,             XK_g,      spawn,          {.v = gotopcmd } },
 	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = nvimcmd } },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = calcursecmd } },
+	{ MODKEY|ShiftMask,             XK_r,      spawn,          {.v = newsboatcmd } },
+	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = neomuttcmd } },
 	{ MODKEY|ShiftMask,             XK_n,      spawn,          {.v = scratchcmd } },
 	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = servercmd } },
 
@@ -160,8 +152,8 @@ static Key keys[] = {
   /* Toggle Panel */
   { MODKEY,                       XK_b,      togglebar,      {0} },
   /* Rotating Clients; Focus Unchanged */
-  { MODKEY,                       XK_h,      inplacerotate,  {.i = +2} },
-  { MODKEY,                       XK_l,      inplacerotate,  {.i = -2} },
+  { MODKEY,                       XK_h,      inplacerotate,  {.i = -2} },
+  { MODKEY,                       XK_l,      inplacerotate,  {.i = +2} },
   /* Rotating Focus; Stack Unchanged*/
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -177,13 +169,12 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY|ControlMask,           XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ControlMask,           XK_j,      setcfact,       {.f = +0.25} }, /* Vertical Expand */
-	{ MODKEY|ControlMask,           XK_k,      setcfact,       {.f = -0.25} }, /* Vertical Retract */ { MODKEY|ControlMask,           XK_o,      setcfact,       {.f =  0.00} }, /* Default Size */
+	{ MODKEY|ControlMask,           XK_k,      setcfact,       {.f = -0.25} }, /* Vertical Retract */
+  { MODKEY|ControlMask,           XK_o,      setcfact,       {.f =  0.00} }, /* Default Size */
   /* Window Layout */
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
   /* Resize All Gaps */
@@ -229,26 +220,6 @@ static Key keys[] = {
 /* Kill Clients */
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} }, 
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-
-/* DEPRECATED or Unnecessary */
-  /*
-   *Swaps with master 
-	 *{ MODKEY,                       XK_Return, zoom,           {0} }, 
-   * Resize Horizontal Gaps Between Windows 
-   *{ MODKEY|ControlMask,           XK_6,      incrihgaps,     {.i = +1 } },
-   *{ MODKEY|ControlMask|ShiftMask, XK_6,      incrihgaps,     {.i = -1 } },
-   * Resize Vertical Gaps Between Windows 
-   *{ MODKEY|ControlMask,           XK_7,      incrivgaps,     {.i = +1 } },
-   *{ MODKEY|ControlMask|ShiftMask, XK_7,      incrivgaps,     {.i = -1 } },
-   * Resize Horizontal Gaps Outside Windows 
-   *{ MODKEY|ControlMask,           XK_8,      incrohgaps,     {.i = +1 } },
-   *{ MODKEY|ControlMask|ShiftMask, XK_8,      incrohgaps,     {.i = -1 } },
-   * Resize Vertical Gaps Outside Windows 
-   *{ MODKEY|ControlMask,           XK_9,      incrovgaps,     {.i = +1 } },
-   *{ MODKEY|ControlMask|ShiftMask, XK_9,      incrovgaps,     {.i = -1 } },
-   *{ MODKEY|ShiftMask,             XK_j,      inplacerotate,  {.i = +1} },
-   *{ MODKEY|ShiftMask,             XK_k,      inplacerotate,  {.i = -1} },
-   */
 };
 
 
