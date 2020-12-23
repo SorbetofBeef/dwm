@@ -38,9 +38,9 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor    float x,y,w,h         floatborderpx*/
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        50,50,500,500,        5 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1,        50,50,500,500,        5 },
+	/* class      instance    title       tags mask     switchtotag    isfloating   monitor    float x,y,w,h         floatborderpx*/
+	{ "Gimp",     NULL,       NULL,       0,            0,             1,           -1,        50,50,500,500,        5 },
+	{ "Firefox",  NULL,       NULL,       1 << 8,       0,             0,           -1,        50,50,500,500,        5 },
 };
 
 /* layout(s) */
