@@ -12,10 +12,6 @@ static const int showbar            =  1;        /* 0 means no bar */
 static const int topbar             =  1;        /* 0 means bottom bar */
 static const int vertpad            =  5;       /* vertical padding of bar */
 static const int sidepad            = 10;       /* horizontal padding of bar */
-/*
- *static const char *fonts[]          = { "ProFontX11 Nerd Font:size=10:antialias=true:hinting=slight" };
- *static const char dmenufont[]       =   "SpaceMono Nerd Font:size=13:antialias=true:hinting=slight";
- */
 static const char *fonts[]          = { "InconsolataGo Nerd Font:Bold:size=14:antialias=true:hinting=slight" };
 static const char dmenufont[]       =   "InconsolataGo Nerd Font:Bold:size=15:antialias=true:hinting=slight";
 /* colors */
@@ -54,8 +50,10 @@ static const char *colors[][3]      = {
 	[SchemeStatus]   = { col_fg,   col_bg, "#000000" }, // Statusbar right {text,background,not used but cannot be empty}
 	[SchemeTagsSel]  = { col_bg, col_red9, "#000000" }, // Tagbar left selected {text,background,not used but cannot be empty}
   [SchemeTagsNorm] = { col_fg,   col_bg, "#000000" }, // Tagbar left unselected {text,background,not used but cannot be empty}
-  [SchemeInfoSel]  = { col_bg,   col_bg, "#000000" }, // infobar middle  selected {text,background,not used but cannot be empty}
-  [SchemeInfoNorm] = { col_bg,   col_bg, "#000000" }, // infobar middle  unselected {text,background,not used but cannot be empty}
+  /*
+   *[SchemeInfoSel]  = { col_bg,   col_bg, "#000000" }, // infobar middle  selected {text,background,not used but cannot be empty}
+   *[SchemeInfoNorm] = { col_bg,   col_bg, "#000000" }, // infobar middle  unselected {text,background,not used but cannot be empty}
+   */
 };
 
 /* tagging */
@@ -238,7 +236,6 @@ static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
