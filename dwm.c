@@ -154,7 +154,7 @@ typedef struct {
 	const char *instance;
 	const char *title;
 	unsigned int tags;
-+	unsigned int switchtotag;
+ 	unsigned int switchtotag;
 	int isfloating;
 	int monitor;
 	int floatx, floaty, floatw, floath;

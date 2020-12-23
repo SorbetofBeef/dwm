@@ -12,6 +12,10 @@ static const int showbar            =  1;        /* 0 means no bar */
 static const int topbar             =  1;        /* 0 means bottom bar */
 static const int vertpad            =  5;       /* vertical padding of bar */
 static const int sidepad            = 10;       /* horizontal padding of bar */
+/*
+ *static const char *fonts[]          = { "ProFontX11 Nerd Font:size=10:antialias=true:hinting=slight" };
+ *static const char dmenufont[]       =   "SpaceMono Nerd Font:size=13:antialias=true:hinting=slight";
+ */
 static const char *fonts[]          = { "InconsolataGo Nerd Font:Bold:size=14:antialias=true:hinting=slight" };
 static const char dmenufont[]       =   "InconsolataGo Nerd Font:Bold:size=15:antialias=true:hinting=slight";
 /* colors */
@@ -50,10 +54,8 @@ static const char *colors[][3]      = {
 	[SchemeStatus]   = { col_fg,   col_bg, "#000000" }, // Statusbar right {text,background,not used but cannot be empty}
 	[SchemeTagsSel]  = { col_bg, col_red9, "#000000" }, // Tagbar left selected {text,background,not used but cannot be empty}
   [SchemeTagsNorm] = { col_fg,   col_bg, "#000000" }, // Tagbar left unselected {text,background,not used but cannot be empty}
-  /*
-   *[SchemeInfoSel]  = { col_bg,   col_bg, "#000000" }, // infobar middle  selected {text,background,not used but cannot be empty}
-   *[SchemeInfoNorm] = { col_bg,   col_bg, "#000000" }, // infobar middle  unselected {text,background,not used but cannot be empty}
-   */
+  [SchemeInfoSel]  = { col_bg,   col_bg, "#000000" }, // infobar middle  selected {text,background,not used but cannot be empty}
+  [SchemeInfoNorm] = { col_bg,   col_bg, "#000000" }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 /* tagging */
@@ -64,19 +66,18 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-/*    class    inst     title     tags  flt mn    fl x,y,w,h    fltb*/
- {      "filing", NULL,   "ranger",       0, 0, -1, 1250,855,700,730, 2 },
- {      "filing", NULL,  "sm-term",       0, 1, -1, 1250,855,700,730, 2 },
- { "qutebrowser", NULL,       NULL,       0, 0, -1, 0050,050,500,500, 2 },
- {       "XTerm", NULL,   "server",  1 << 2, 0, -1, 0050,050,500,500, 2 },
- {        "feed", NULL,  "neomutt",       0, 0,  1, 0050,050,500,500, 2 },
- {        "feed", NULL, "newsboat",       0, 0, -1, 0050,050,500,500, 2 },
- {        "feed", NULL, "calcurse",       0, 1, -1, 1250,025,460,300, 2 },
-
- {       "Slack", NULL,       NULL,  1 << 4, 1, -1, 0025,050,950,850, 2 },
- {        "zoom", NULL,       NULL,  1 << 5, 1, -1, 1250,025,150,850, 2 },
- {      "system", NULL,    "gotop",  1 << 6, 1, -1, 1250,025,700,900, 2 },
- {     "editing", NULL, "note-pad",       0, 1, -1, 1250,855,700,730, 2 },
+/*      class    inst     title       tags  sw flt mn     fl x,y,w,h    fltb*/
+ {      "filing", NULL,   "ranger",  1 << 1, 2, 0, -1, 1250,855,700,730, 2 },
+ {      "filing", NULL,  "sm-term",      ~0, 0, 1, -1, 1250,855,700,730, 2 },
+ { "qutebrowser", NULL,       NULL,       0, 0, 0, -1, 0050,050,500,500, 2 },
+ {       "XTerm", NULL,   "server",  1 << 2, 3, 0, -1, 0050,050,500,500, 2 },
+ {        "feed", NULL,  "neomutt",  1 << 3, 4, 0,  1, 0050,050,500,500, 2 },
+ {        "feed", NULL, "newsboat",  1 << 3, 4, 0, -1, 0050,050,500,500, 2 },
+ {        "feed", NULL, "calcurse",       0, 0, 1, -1, 1250,025,460,300, 2 },
+ {       "Slack", NULL,       NULL,  1 << 4, 5, 1, -1, 0025,050,950,850, 2 },
+ {        "zoom", NULL,       NULL,  1 << 5, 6, 1, -1, 1250,025,150,850, 2 },
+ {      "system", NULL,    "gotop",  1 << 6, 7, 1, -1, 1250,025,700,900, 2 },
+ {     "editing", NULL, "note-pad",      ~0, 0, 1, -1, 1250,855,700,730, 2 },
 };
 
 /* layout(s) */
@@ -236,6 +237,7 @@ static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+//	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
