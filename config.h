@@ -51,11 +51,6 @@ static const char *colors[][3]      = {
 /*                     fg      bg        border   */
 	[SchemeNorm]     = { col_fg,   col_bg,  col_red1 },
 	[SchemeSel]      = { col_bg, col_red9,  col_red9 },
-	[SchemeStatus]   = { col_fg,   col_bg, "#000000" }, // Statusbar right {text,background,not used but cannot be empty}
-	[SchemeTagsSel]  = { col_bg, col_red9, "#000000" }, // Tagbar left selected {text,background,not used but cannot be empty}
-  [SchemeTagsNorm] = { col_fg,   col_bg, "#000000" }, // Tagbar left unselected {text,background,not used but cannot be empty}
-  [SchemeInfoSel]  = { col_bg,   col_bg, "#000000" }, // infobar middle  selected {text,background,not used but cannot be empty}
-  [SchemeInfoNorm] = { col_bg,   col_bg, "#000000" }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 /* tagging */
@@ -68,7 +63,7 @@ static const Rule rules[] = {
 	 */
 /*      class    inst     title       tags  sw flt mn     fl x,y,w,h    fltb*/
  {      "filing", NULL,   "ranger",  1 << 1, 2, 0, -1, 1250,855,700,730, 2 },
- {      "filing", NULL,  "sm-term",      ~0, 0, 1, -1, 1250,855,700,730, 2 },
+ {      "filing", NULL,     "term",      ~0, 0, 1, -1, 1250,855,700,730, 2 },
  { "qutebrowser", NULL,       NULL,       0, 0, 0, -1, 0050,050,500,500, 2 },
  {       "XTerm", NULL,   "server",  1 << 2, 3, 0, -1, 0050,050,500,500, 2 },
  {        "feed", NULL,  "neomutt",  1 << 3, 4, 0,  1, 0050,050,500,500, 2 },
@@ -114,7 +109,6 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]    = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_yellow3, "-nf", col_white15, "-sb", col_red9, "-sf", col_black8, NULL };
-static const char *termcmd[]     = { "kitty", NULL };
 static const char *webcmd[]      = { "qutebrowser", "reddit.com", NULL };
 static const char *slackcmd[]    = { "slack", NULL };
 static const char *zoomcmd[]     = { "zoom", NULL };
@@ -125,7 +119,7 @@ static const char *rangercmd[]   = { "kitty", "--title",   "ranger", "--class", 
 static const char *calcursecmd[] = { "kitty", "--title", "calcurse", "--class", "feed", "calcurse", NULL };
 static const char *neomuttcmd[]  = { "kitty", "--title",  "neomutt", "--class", "feed", "neomutt", NULL };
 static const char *newsboatcmd[] = { "kitty", "--title", "newsboat", "--class", "feed", "newsboat", NULL };
-static const char *smtermcmd[]   = { "kitty", "--title",  "sm-term", "--class", "filing", NULL };
+static const char *termcmd[]     = { "kitty", "--title",     "term", "--class", "filing", NULL };
 static const char *scratchcmd[]  = { "kitty", "--title", "note-pad", "--class", "editing", "nvim", "/home/christian/dox/notes/new-note", NULL };
 
 static Key keys[] = {
@@ -133,8 +127,7 @@ static Key keys[] = {
 
 /* Spawning Clients */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = smtermcmd } },
+	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = rangercmd } },
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = webcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = slackcmd } },
@@ -147,7 +140,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_n,      spawn,          {.v = scratchcmd } },
 	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = servercmd } },
 
-/* Client Manipulation Within Current Stack */
+/* Client Manipulation */
   /* Toggle Panel */
   { MODKEY,                       XK_b,      togglebar,      {0} },
   /* Rotating Clients; Focus Unchanged */
@@ -162,8 +155,10 @@ static Key keys[] = {
   /* Rotating Clients In to and Out of Master Stack */
 	{ MODKEY|ShiftMask,             XK_h,      incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_l,      incnmaster,     {.i = -1 } },
+/* Kill Focused Client */
+	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 
-/* Window Manipulation Within Current Stack */
+/* Window Manipulation */
   /* Resize Window */
 	{ MODKEY|ControlMask,           XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY|ControlMask,           XK_l,      setmfact,       {.f = +0.05} },
@@ -188,6 +183,8 @@ static Key keys[] = {
   /* Toggle Gaps */
   { MODKEY|ControlMask,           XK_0,      togglegaps,     {0} },
   { MODKEY|ControlMask|ShiftMask, XK_0,      defaultgaps,    {0} },
+/* Kill Window Manager */
+	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} }, 
 
 /* Tags */
   /* Viewing Tags 
@@ -199,10 +196,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_5,                      4)
 	TAGKEYS(                        XK_6,                      5)
 	TAGKEYS(                        XK_7,                      6)
- /*
-	*TAGKEYS(                        XK_8,                      7)
-	*TAGKEYS(                        XK_9,                      8)
-  */
  /* View Previous Tag*/
 	{ MODKEY,                       XK_Tab,    view,           {0} },
   /* View All Tags */
@@ -215,10 +208,6 @@ static Key keys[] = {
   /* Tagging Monitors */
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-
-/* Kill Clients */
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} }, 
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 };
 
 
@@ -237,7 +226,6 @@ static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-//	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
