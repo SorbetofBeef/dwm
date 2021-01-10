@@ -3,84 +3,81 @@
 /* appearance */
 static const unsigned int borderpx  =  4;        /* border pixel of windows */
 static const unsigned int snap      =  2;       /* snap pixel */
-static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
+static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 20;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 20;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 20;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          =  0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            =  1;        /* 0 means no bar */
 static const int topbar             =  1;        /* 0 means bottom bar */
-static const int vertpad            =  5;       /* vertical padding of bar */
+static const int vertpad            = 10;       /* vertical padding of bar */
 static const int sidepad            = 10;       /* horizontal padding of bar */
-/*
- *static const char *fonts[]          = { "ProFontX11 Nerd Font:size=10:antialias=true:hinting=slight" };
- *static const char dmenufont[]       =   "SpaceMono Nerd Font:size=13:antialias=true:hinting=slight";
- */
-static const char *fonts[]          = { "InconsolataGo Nerd Font:Bold:size=14:antialias=true:hinting=slight" };
-static const char dmenufont[]       =   "InconsolataGo Nerd Font:Bold:size=15:antialias=true:hinting=slight";
+static const char *fonts[]          = { "SpaceMono Nerd Font:size=12:antialias=true" };
+static const char dmenufont[]       =   "SpaceMono Nerd Font:size=13:antialias=true:hinting=slight";
 /* colors */
-static const char col_fg[]	        = "#4e4e4e";
-static const char col_bg[]          = "#e4e4e4";
-/* Row for kitty copypasta */                 
-/* black */                                   
-static const char col_black0[]      = "#e4e4e4";
-static const char col_black8[]      = "#4e4e4e";
-/* red */                                     
-static const char col_red1[]        = "#af5f5f";
-static const char col_red9[]        = "#870100";
-/* green */                                   
-static const char col_green2[]      = "#111111";
-static const char col_green10[]     = "#222222";
+static const char col_bg[]	        = "#cbe3e7";
+static const char col_fg[]          = "#1e1c31";
+/* Row for kitty copypasta */
+/* black */                                               
+static const char col_black0[]      = "#565575";
+static const char col_black8[]      = "#100e23";
+/* red */                                                 
+static const char col_red1[]        = "#ff8080";
+static const char col_red9[]        = "#ff5458";
+/* green */                                               
+static const char col_green2[]      = "#95ffa4";
+static const char col_green10[]     = "#62d196";
 /* yellow */                                  
-static const char col_yellow3[]     = "#222222";
-static const char col_yellow11[]    = "#333333";
+static const char col_yellow3[]     = "#ffe9aa";
+static const char col_yellow11[]    = "#ffb378";
 /* blue */                                    
-static const char col_blue4[]       = "#333333";
-static const char col_blue12[]      = "#353535";
+static const char col_blue4[]       = "#91ddff";
+static const char col_blue12[]      = "#65b2ff";
 /* magenta */                                 
-static const char col_magenta5[]    = "#353535";
-static const char col_magenta13[]   = "#444444";
+static const char col_magenta5[]    = "#c991e1";
+static const char col_magenta13[]   = "#906cff";
 /* cyan */                                    
-static const char col_cyan6[]       = "#444444";
-static const char col_cyan14[]      = "#555555";
+static const char col_cyan6[]       = "#aaffe4";
+static const char col_cyan14[]      = "#63f2f1";
 /* white */                                   
-static const char col_white7[]      = "#555555";
-static const char col_white15[]     = "#666666";
+static const char col_white7[]      = "#cbe3e7";
+static const char col_white15[]     = "#a6b3cc";
 
 static const char *colors[][3]      = {
-/*                     fg      bg        border   */
-	[SchemeNorm]     = { col_fg,   col_bg,  col_red1 },
-	[SchemeSel]      = { col_bg, col_red9,  col_red9 },
+/*                     fg              bg        border   */
+	[SchemeNorm] = {        col_bg, col_black0,  col_black8 },
+	[SchemeSel]  = { col_magenta13,  col_cyan6,   col_cyan6 },
 };
 
 /* tagging */
-static const char *tags[]    = { "  1  ﯥ  ", " 2  ﱮ  ", " 3  轢 ", " 4  ﱮ  ", " 5  ﱮ  ", " 6  ﱮ  ", " 7  ﱮ  " };
-static const char *alttags[] = { "  1    ", " 2  פּ  ", " 3  歷 ", " 4  參 ", " 5  聆 ", " 6    ", " 7  ﱩ  " };
+static const char *tags[]    = { "  1  ﯥ  ", " 2  ﱮ  ", " 3  ﱮ  ", " 4  ﱮ  ", " 5  ﱮ  ", " 6  轢  ", " 7  ﱩ  " };
+static const char *alttags[] = { "  1    ", " 2  פּ  ", " 3  參 ", " 4  聆 ", " 5    ", " 6  歷  ", " 7  ﱩ  " };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-/*      class    inst     title       tags  sw flt mn     fl x,y,w,h    fltb*/
- {      "filing", NULL,   "ranger",  1 << 1, 2, 0, -1, 1250,855,700,730, 2 },
- {      "filing", NULL,     "term",      ~0, 0, 1, -1, 1250,855,700,730, 2 },
- { "qutebrowser", NULL,       NULL,       0, 0, 0, -1, 0050,050,500,500, 2 },
- {       "XTerm", NULL,   "server",  1 << 2, 3, 0, -1, 0050,050,500,500, 2 },
- {        "feed", NULL,  "neomutt",  1 << 3, 4, 0,  1, 0050,050,500,500, 2 },
- {        "feed", NULL, "newsboat",  1 << 3, 4, 0, -1, 0050,050,500,500, 2 },
- {        "feed", NULL, "calcurse",       0, 0, 1, -1, 1250,025,460,300, 2 },
- {       "Slack", NULL,       NULL,  1 << 4, 5, 1, -1, 0025,050,950,850, 2 },
- {        "zoom", NULL,       NULL,  1 << 5, 6, 1, -1, 1250,025,150,850, 2 },
- {      "system", NULL,    "gotop",  1 << 6, 7, 1, -1, 1250,025,700,900, 2 },
- {     "editing", NULL, "note-pad",      ~0, 0, 1, -1, 1250,855,700,730, 2 },
+/*      class    inst     title       tags  sw flt mn fl x,y,w,h    fltb*/
+ { "qutebrowser", NULL,       NULL,  1 << 0, 0, 0, 1, 50,50,500,500, 2 },
+/* {      "filing", NULL,   "ranger",  1 << 1, 2, 0, -1, 1250,855,700,730, 2 }, */
+ {        "feed", NULL,  "neomutt",  1 << 2, 3, 0, 1, 50,50,500,500, 2 },
+ {        "feed", NULL, "newsboat",  1 << 2, 3, 0, 1, 50,30,500,500, 2 },
+ {       "Slack", NULL,       NULL,  1 << 3, 4, 1, 1, 30,50,950,850, 2 },
+ {        "zoom", NULL,       NULL,  1 << 4, 5, 1, 1, 1250,50,950,850, 2 },
+ {       "XTerm", NULL,   "server",  1 << 5, 6, 0, 1, 50,50,500,500, 2 },
+ {      "system", NULL,    "gotop",  1 << 6, 7, 1, 1, 950,50,800,900, 2 },
+ {      "filing", NULL,   "ranger",       0, 0, 1, 1, 950,655,900,730, 2 },
+ {      "filing", NULL,     "term",       0, 0, 1, 1, 950,655,900,730, 2 },
+ {     "editing", NULL, "note-pad",       0, 0, 1, 1, 950,655,900,730, 2 },
+ {        "feed", NULL, "calcurse",       0, 0, 1, 1, 950,30,900,700, 2 },
 };
 
 /* layout(s) */
 static const float mfact         = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster         =    1; /* number of clients in master area */
 static const int resizehints     =    1; /* 1 means respect size hints in tiled resizals */
-static const int attachdirection =    4; /* 0 default, 1 above, 2 aside, 3 below, 4 bottom, 5 top */
+static const int attachdirection =    3; /* 0 default, 1 above, 2 aside, 3 below, 4 bottom, 5 top */
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 #include "vanitygaps.c"
@@ -109,19 +106,18 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]    = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_yellow3, "-nf", col_white15, "-sb", col_red9, "-sf", col_black8, NULL };
+static const char *dmenucmd[]    = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg, "-sb", col_magenta5, "-sf", col_white15, NULL };
 static const char *webcmd[]      = { "qutebrowser", "reddit.com", NULL };
-static const char *slackcmd[]    = { "slack", NULL };
 static const char *zoomcmd[]     = { "zoom", NULL };
-static const char *servercmd[]   = { "xterm", "-T", "server", "-e", "remote-server", NULL };
-static const char *gotopcmd[]    = { "kitty", "--title",    "gotop", "--class", "system", "gotop", NULL };
-static const char *nvimcmd[]     = { "kitty", "--title",     "nvim", "--class", "editing","nvim", NULL };
-static const char *rangercmd[]   = { "kitty", "--title",   "ranger", "--class", "filing", "ranger", NULL };
-static const char *calcursecmd[] = { "kitty", "--title", "calcurse", "--class", "feed", "calcurse", NULL };
-static const char *neomuttcmd[]  = { "kitty", "--title",  "neomutt", "--class", "feed", "neomutt", NULL };
-static const char *newsboatcmd[] = { "kitty", "--title", "newsboat", "--class", "feed", "newsboat", NULL };
-static const char *termcmd[]     = { "kitty", "--title",     "term", "--class", "filing", NULL };
-static const char *scratchcmd[]  = { "kitty", "--title", "note-pad", "--class", "editing", "nvim", "/home/christian/dox/notes/new-note", NULL };
+static const char *servercmd[]   = { "xterm", "-T",   "server", "-e", "remote-server", NULL };
+static const char *slackcmd[]    = { "kitty", "-T",    "Slack", "--class", "slack", "weechat", NULL };
+static const char *gotopcmd[]    = { "kitty", "-T",    "gotop", "--class", "system", "gotop", NULL };
+static const char *rangercmd[]   = { "kitty", "-T",   "ranger", "--class", "filing", "ranger", NULL };
+static const char *calcursecmd[] = { "kitty", "-T", "calcurse", "--class", "feed", "calcurse", NULL };
+static const char *neomuttcmd[]  = { "kitty", "-T",  "neomutt", "--class", "feed", "neomutt", NULL };
+static const char *newsboatcmd[] = { "kitty", "-T", "newsboat", "--class", "feed", "newsboat", NULL };
+static const char *termcmd[]     = { "kitty", "-T",     "term", "--class", "filing", NULL };
+static const char *scratchcmd[]  = { "kitty", "-T", "note-pad", "--class", "editing", "nvim", "/home/christian/dox/notes/new-note", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -134,7 +130,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = slackcmd } },
 	{ MODKEY|ShiftMask,             XK_z,      spawn,          {.v = zoomcmd } },
 	{ MODKEY|ShiftMask,             XK_g,      spawn,          {.v = gotopcmd } },
-	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = nvimcmd } },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = calcursecmd } },
 	{ MODKEY|ShiftMask,             XK_r,      spawn,          {.v = newsboatcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = neomuttcmd } },
